@@ -138,6 +138,8 @@ void loadGame(string code) {
 }
 
 int main(){
+
+    // --test code : nemo_4_380_2_0_0_3_Pumpkin.3.2700.0.0-1.2.0.0.0.0_0.2.0.0.0.0_0.2.0.0.0.0--
     cout << " Enter Save Code: "; string code; cin >> code;
     
     loadGame(code);

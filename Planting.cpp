@@ -1,40 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
-
-// --- โครงสร้างข้อมูล ---
-struct Row {
-    bool isPlanted = false;
-    string plantName = "";
-    int plantTypeIndex = 0;
-    int age = 0; 
-    bool isWatered = false;
-    bool isRotten = false;
-    bool hasFertilizer = false; 
-    int sprinklerDays = 0;      
-};
-
-//---ตัวแปรหลัก---//
-string playerName = "Farmer";
-int D = 1; 
-int M = 100; 
-int G = 0;
-int AP = 5;
-const int MAX_AP = 5;
-const int RENT_AMOUNT = 500; 
-const int RENT_CYCLE = 7;
-int debt = 0; 
-int rentStrikes = 0; 
-int expansionCost = 5;
-
-//----ข้อมูลพืช---//
-string plantNames[] = {"Carrot", "Corn", "Pumpkin"};
-int plantCosts[] = {20, 50, 100};   
-int plantSells[] = {40, 120, 300};  
-int baseSuccess[] = {80, 60, 40}; 
-
-vector<Row> rows(3); // สร้างเวกเตอร์เก็บแถว 3 ตำแหน่ง //
+#include "MiNifarm.h"
 
 //---ฟังก์ชั่นปลูกพืช---//
 void planting() {

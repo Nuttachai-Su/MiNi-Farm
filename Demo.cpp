@@ -27,7 +27,18 @@ struct Row {
     bool isWatered = false;
     bool isRotten = false;
     bool hasFertilizer = false; 
-    int sprinklerDays = 0;      
+    int sprinklerDays = 0;
+    
+    void reset() {
+    isPlanted = false;
+    plantName = "";
+    plantTypeIndex = 0;
+    age = 0;
+    isWatered = false;     
+    isRotten = false;      
+    hasFertilizer = false;
+    }
+
 };
 
 struct Quest {
@@ -139,7 +150,7 @@ void processNightEvents() {
         if (hasScarecrow) cout << " > Defense: Wild animals came, but the Scarecrow scared them off!" << endl;
         else {
             int target = rand() % rows.size();
-            if (rows[target].isPlanted) { rows[target].isPlanted = false; cout << " > Danger: Animals ate your crop in Row " << target+1 << "!" << endl; }
+            if (rows[target].isPlanted) { rows[target].reset(); cout << " > Danger: Animals ate your crop in Row " << target+1 << "!" << endl; }
             else cout << " > Info: Animals visited but there was nothing to eat." << endl;
         }
     } else if (event < 35) {
@@ -228,9 +239,9 @@ void endDay() {
     D++; AP = MAX_AP; M += 50;
     for(auto &r : rows) {
         if (r.isPlanted) {
-            r.age++; r.isWatered = false;
+            r.age++; 
             if (r.sprinklerDays > 0) { r.isWatered = true; r.sprinklerDays--; }
-            if (rand() % 100 < 10) r.isRotten = true;
+            if (rand() % 100 < 1) r.isRotten = true;
         } else if (r.sprinklerDays > 0) r.sprinklerDays--;
     }
     waitEnter();
@@ -259,7 +270,9 @@ void harvesting() {
             int s = plantSells[rows[r].plantTypeIndex] + (rows[r].age * 5); M += s;
             cout << "[Success] Sold for $" << s;
         } else cout << "[Fail] Crop lost!";
-        rows[r].isPlanted = false; rows[r].hasFertilizer = false; AP--; waitEnter();
+        rows[r].reset();
+        AP--;
+        waitEnter();
     }
 }
 
@@ -367,7 +380,7 @@ int main() {
             case 6: {
                 bool found = false;
                 for(auto &r : rows) if(r.isPlanted && !r.isRotten && r.plantName == currentQuest.targetPlant && r.age == currentQuest.targetAge){
-                    M += currentQuest.rewardMoney; G += 2; r.isPlanted = false; 
+                    M += currentQuest.rewardMoney; G += 2; r.reset(); 
                     cout << "\n[Success] Quest Done! Gem +2"; generateQuest(); found = true; waitEnter(); break;
                 } 
                 if(!found) { cout << "\n[!] No matching crop."; waitEnter(); }

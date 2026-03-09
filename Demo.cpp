@@ -200,11 +200,12 @@ void drawInterface() {
     ss << "________________________________________________________________\n\n";
     ss << " [ ACTIONS ]  AP: " << AP << "/" << MAX_AP << " | Expand: " << expansionCost << " Gems\n";
     
-    string menus[] = {"Plant", "Harvest", "Water", "Shop", "Index", "Quest", "End Day", "Stop"};
-    for(int i=0; i<8; i++) {
+    string menus[] = {"Plant", "Harvest", "Water", "Shop", "Index", "Quest", "End Day", "Stop","HowToPlay"};
+    for(int i=0; i<9; i++) {
         ss << "  " << i+1 << ") " << left << setw(11) << menus[i];
         if((i+1)%2==0) ss << "\n";
     }
+    ss << "\n";
     ss << "________________________________________________________________\n Command: ";
 
     clearScreen();
@@ -388,6 +389,7 @@ int main() {
             }
             case 7: endDay(); break;
             case 8: stopGame(); break;
+            case 9: howToplay(); waitEnter(); break;
         }
     }
     return 0;

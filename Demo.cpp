@@ -242,7 +242,7 @@ void endDay() {
         if (r.isPlanted) {
             r.age++; 
             if (r.sprinklerDays > 0) { r.isWatered = true; r.sprinklerDays--; }
-            if (rand() % 100 < 1) r.isRotten = true;
+            if (rand() % 100 < 3) r.isRotten = true;
         } else if (r.sprinklerDays > 0) r.sprinklerDays--;
     }
     waitEnter();

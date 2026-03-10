@@ -375,7 +375,7 @@ int main() {
         switch (c) {
             case 1: planting(); break;
             case 2: harvesting(); break;
-            case 3: { int r; cout << "Row: "; cin >> r; r--; if(r>=0 && r<(int)rows.size()){rows[r].isWatered=true; AP--;} break; }
+            case 3: { int r; cout << "Row: "; cin >> r; r--; if(AP>0 &&r>=0 && r<(int)rows.size()){rows[r].isWatered=true; AP--;} break; }
             case 4: openShop(); break;
             case 5: showIndex(); break;
             case 6: {
